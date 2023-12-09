@@ -1,0 +1,19 @@
+#docker-compose up
+version: "3.9"
+services:
+  postgres:
+    container_name: localTaskMngSQLDB
+    image: postgres
+    environment:
+      POSTGRES_DB: "task_db"
+      POSTGRES_USER: "TaskMng"
+      POSTGRES_PASSWORD: "secret"
+    ports:
+      - "5432:5432"
+    networks:
+      java13-network:
+        aliases:
+          - task
+networks:
+  java13-network:
+    name: 'our_task_network'
