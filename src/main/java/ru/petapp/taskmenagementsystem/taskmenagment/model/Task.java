@@ -10,7 +10,7 @@ import java.time.LocalDate;
 import java.util.Set;
 
 @Entity
-@Table(name = "books")
+@Table(name = "tasks")
 @Getter
 @Setter
 @NoArgsConstructor
@@ -35,13 +35,14 @@ public class Task
     @Enumerated
     private Priority priority;
 
-    @Column(name = "author", nullable = false)
-    private String author;
-    
-    @Column(name = "performer", nullable = false)
-    private String performer;
+//    @Column(name = "author", nullable = false)
+//    private String author;
+
+    @OneToOne
+    @JoinColumn(name = "performer", nullable = false)
+    private User performer;
 
     @ManyToOne(cascade = {CascadeType.MERGE, CascadeType.PERSIST})
-    @JoinColumn(name = "user_id", foreignKey = @ForeignKey(name = "FK_RENT_BOOK_INFO_USER"))
+    @JoinColumn(name = "user_id", foreignKey = @ForeignKey(name = "FK_TASK_USER"))
     private User user;
 }

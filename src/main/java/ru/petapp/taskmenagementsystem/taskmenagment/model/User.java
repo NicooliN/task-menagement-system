@@ -61,4 +61,7 @@ public class User
     
     @OneToMany(mappedBy = "user", cascade = {CascadeType.MERGE, CascadeType.PERSIST})
     private Set<Task> tasks;
+
+    @OneToOne(cascade = CascadeType.ALL, mappedBy="performer")
+    private Task task;
 }
